@@ -13,7 +13,7 @@ namespace AstronomicalProcessing
 
     public partial class Form1 : Form
     {
-  // can you see the change?
+  //can you see the change?
         // Parallel array for Neutrino Interactions in chronological order Stu
         int[] neutrinoChrono = new int[24];
         // Parallel array for time periods in chronological order Stu
