@@ -264,29 +264,44 @@ namespace AstronomicalProcessing
 
         }
 
-        private void ButtonMode_Click(object sender, EventArgs e)
+         private void ButtonMode_Click(object sender, EventArgs e)
         {
+            // Frequency of the value being checked
             int frequency = 1;
+            // Highest frequency of all the values checked so far
             int maxFrequency = 1;
+            // String showed in the GUI
             string mode = null;
 
+            // Iterating through neutrino interactions in ascending order Stu
             for (int i = 0; i < 23; i++)
             {
+                // Reset frequency to 1 for each new value
                 frequency = 1;
-                while(i < 23 && neutrinoAscend[i] == neutrinoAscend[i + 1])
+                // If i is less than 23 (last value in the arrayj) and the current value is the same as the next one,
+                // repeat the while loop
+                // Else, break the loop
+                while (i < 23 && neutrinoAscend[i] == neutrinoAscend[i + 1])
                 {
                     frequency++;
                     i++;
                 }
+                // If the frequency of the value just checked is the same as the highest frequency of every value checked
+                // so far, then add the current value to the mode string
                 if (frequency == maxFrequency)
                 {
                     mode = mode + ", " + neutrinoAscend[i].ToString();
                 }
+                // If the frequency of the value just checked is greater than the highest frequency of every value checked
+                // so far, overwrite the mode string with the current value
                 else if (frequency > maxFrequency)
                 {
                     maxFrequency = frequency;
                     mode = neutrinoAscend[i].ToString();
                 }
+                // If the highest frequency of any value is greater than 1
+                // then update the text box in the GUI
+                // else there is no mode
             }
             if (maxFrequency > 1)
             {
@@ -297,32 +312,39 @@ namespace AstronomicalProcessing
                 TextBoxMode.Text = "no mode";
             }
         }
-
+        // Button to calculate the mid-extreme of the data set Stu
         private void ButtonMidExtreme_Click(object sender, EventArgs e)
         {
+            // Highest value in the array + lowest value in the array divided by 2
             int range = neutrinoAscend[23] + neutrinoAscend[0];
             double midExtreme = range / 2;
+            // Update GUI
             TextBoxMidExtreme.Text = midExtreme.ToString();
         }
-
+        // Button to calculate the average of the data set Stu
         private void ButtonAverage_Click(object sender, EventArgs e)
         {
             int sum = 0;
-            int average = 0;
+            double average = 0;
+            // Iterate through neutrino interactions array
             for (int i = 0; i < 24; i++)
             {
+                // Adding all the values together
                 sum += neutrinoAscend[i];
             }
-            average = sum / 24;
+            // Divide by 2 and round to 2dp
+            average = Math.Round(sum / 24.0, 2);
+            // Update GUI
             TextBoxAverage.Text = average.ToString();
         }
-
+        // Button to calculate the range of the data set Stu
         private void ButtonRange_Click(object sender, EventArgs e)
         {
+            // The highest value neutrino interaction - the lowest value neutrino interaction
             int range = neutrinoAscend[23] - neutrinoAscend[0];
+            // Update GUI
             TextBoxRange.Text = range.ToString();
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
 
